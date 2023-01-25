@@ -1935,22 +1935,7 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("nav", {
-    staticClass: "navbar bg-body-tertiary"
-  }, [_c("a", {
-    staticClass: "navbar-brand",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("img", {
-    staticClass: "ps-2 ms-1",
-    attrs: {
-      src: "https://cdn.icon-icons.com/icons2/2108/PNG/512/vue_icon_130791.png",
-      alt: "Bootstrap",
-      width: "40",
-      height: "34"
-    }
-  }), _vm._v("\n            Vue.Js\n        ")])]), _vm._v(" "), _c("div", {
+  return _c("div", [_c("div", {
     staticClass: "container-fluid pt-3"
   }, [_c("h3", {}, [_vm._v("Vue Works!")])])]);
 }];

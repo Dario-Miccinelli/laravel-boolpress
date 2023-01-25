@@ -32,6 +32,9 @@ Route::middleware('auth')
         Route::get('/', 'HomeController@index')
         ->name('index');
 
+        // Controller CRUD
+
+        Route::resource('/posts', PostsController::class);
     });
 
 // rotte guest
