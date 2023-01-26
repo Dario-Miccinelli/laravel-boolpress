@@ -5,10 +5,21 @@
 
 
 namespace App\Http\Controllers\Admin;
+
 use App\Post;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\Category;
+
+
+
+
+
+
+
 
 class PostsController extends Controller
 {
@@ -20,8 +31,10 @@ class PostsController extends Controller
     public function index()
     {
         $data = [
-            'posts' => Post::paginate(3)
+            'posts' => Post::with('category')->paginate(3),
         ];
+
+       
 
         return view('admin.posts.index', $data);
     }
@@ -33,7 +46,14 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+
+        $data = [
+            'categories' => Category::All(),
+            
+        ];
+
+
+        return view('admin.posts.create', $data);
     }
 
     /**
@@ -46,7 +66,7 @@ class PostsController extends Controller
     {
         $data = $request->all();
 
-        // validazione dati
+        // validazione data
 
         $request->validate([
             'title' => 'required',
@@ -69,7 +89,9 @@ class PostsController extends Controller
     public function show($id)
     {
         $singolo_post = Post::findOrFail($id);
-        return view('admin.posts.show', compact('singolo_post'));
+
+
+        return response()->view('admin.posts.show', compact('singolo_post'));
     }
 
     /**
@@ -83,7 +105,10 @@ class PostsController extends Controller
 
         $post = Post::findOrFail($id);
 
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::All();
+
+        return response()->view('admin.posts.edit', compact('post', 'categories'));
+       
     }
 
     /**

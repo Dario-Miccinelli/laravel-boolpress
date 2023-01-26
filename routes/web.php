@@ -45,4 +45,3 @@ Route::get('{any?}', function () {
 
 
 
-// Route::get('/home', 'HomeController@index')->name('home');
