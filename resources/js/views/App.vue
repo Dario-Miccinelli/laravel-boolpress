@@ -1,8 +1,9 @@
 <template>
 
     <div>
-        <div class="container-fluid pt-3">
-            <h3 class="">Vue Works!</h3>   
+        <div class="container-fluid pt-3 bg-black text-white">
+          
+            <a href="/admin">Admin page</a>  
         </div>
     </div>
 

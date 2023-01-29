@@ -45,6 +45,23 @@
                 @endforeach
             </select>
         </div>
+
+        {{-- tags  --}}
+
+        <div class="my-3">
+
+            <label for="">How are u feeling today?</label>
+            @foreach ($tags as $tag)
+           
+            <label for="">
+                <input class=" " type="checkbox" name="tags[]" value="{{ $tag->id }}" {{ $post->tags->contains($tag) ? 'checked' : ''}}>
+               {{ $tag->name }}
+            </label>
+    
+            @endforeach
+        </div>
+
+      
         <button type="submit" class="btn btn-success">Modifica</button>
     </form>
 @endsection

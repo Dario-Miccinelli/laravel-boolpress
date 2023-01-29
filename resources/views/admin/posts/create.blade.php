@@ -42,7 +42,21 @@
                 </option>
             @endforeach
         </select>
+    </div>
 
+
+    {{-- TAGS PART --}}
+    <div class="my-3">
+
+        <label for="">How are u feeling today?</label>
+        @foreach ($tags as $tag)
+       
+        <label for="">
+            <input type="checkbox" name="tags[]" value="{{ $tag->id }}">
+           {{ $tag->name }}
+        </label>
+
+        @endforeach
     </div>
 
     <button type="submit" class="btn btn-success">Crea</button>
