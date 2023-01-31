@@ -14,6 +14,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Storage;
+
+use App\Mail\CreatePostMail;
+use Illuminate\Support\Facades\Mail;
+
 use App\Category;
 
 
@@ -92,8 +96,13 @@ class PostsController extends Controller
 
        if (array_key_exists('tags', $data)){
         $newPost->tags()->sync($data['tags']);
-        
+    
        }
+       
+    //    invio mail
+       $mail = new CreatePostMail();
+       $email_utente = Auth::user()->email;
+       Mail::to($email_utente)->send($mail);
 
         return redirect()->route('admin.posts.index');
     }
@@ -170,7 +179,7 @@ class PostsController extends Controller
             Storage::delete($singoloPost->cover);
         }
 
-        
+
         $singoloPost->tags()->sync([]);
         $singoloPost->delete();
         
