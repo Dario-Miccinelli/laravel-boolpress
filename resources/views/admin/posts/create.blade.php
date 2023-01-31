@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="card w-100 mb-3 pt-5 pb-5 border-0">
-    <h2>Crea un post</h2>
+    <h1 class="text-center">Crea un post</h2>
 </div>
 
-<form action="{{ route('admin.posts.store') }}" method="POST">
+<form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
 
     @csrf
 
-    <div>
+    <div class="">
         <label class="form-label fw-bold" for="">Titolo</label>
         <input class="form-control" type="text" name="title">
         @error('title')
@@ -59,6 +59,16 @@
         @endforeach
     </div>
 
+    {{-- IMG INPUT --}}
+
+    <div class="my-3">
+        <label for="">Image</label>
+            <input type="file" name="image" class="form-control-file">
+    </div>
+
+
+
+    {{-- button submit --}}
     <button type="submit" class="btn btn-success">Crea</button>
 </form>
 @endsection
