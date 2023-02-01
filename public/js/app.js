@@ -1911,7 +1911,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   // futuri components
-  components: {}
+  components: {},
+  //mounted, gli dico di chiamare la funzione quando la pagina è caricata 
+  mounted: function mounted() {
+    this.getPosts();
+  },
+  // data, che va sempre con il return 
+  data: function data() {
+    return {
+      posts: [] //array vuoto che andrò a riempire con i file del json
+    };
+  },
+
+  // methods per la funzione
+  methods: {
+    getPosts: function getPosts() {
+      var _this = this;
+      axios.get('http://localhost:8000/api/posts') //chiamata API ai dati dei post 
+      .then(function (res) {
+        _this.posts = res.data; //riempio l'array vuoto che ho sopra in data
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -1930,15 +1951,35 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
+  return _c("div", [_c("h1", {
+    staticClass: "text-center mt-3 text-white"
+  }, [_vm._v("Posts")]), _vm._v(" "), _c("div", {
+    staticClass: "container mt-5"
+  }, _vm._l(_vm.posts, function (elem) {
+    return _c("div", {
+      key: _vm.id,
+      staticClass: "card mb-3"
+    }, [_c("div", {
+      staticClass: "row g-0"
+    }, [_c("div", {
+      staticClass: "col-md-4"
+    }, [_c("img", {
+      staticClass: "img-fluid",
+      attrs: {
+        src: "storage/" + elem.cover
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "col-md-8"
+    }, [_c("div", {
+      staticClass: "card-body"
+    }, [_c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(elem.title))]), _vm._v(" "), _c("p", {
+      staticClass: "card-text"
+    }, [_vm._v(_vm._s(elem.body))])])])])]);
+  }), 0)]);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", [_c("div", {
-    staticClass: "container-fluid pt-3"
-  }, [_c("h3", {}, [_vm._v("Vue Works!")])])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -49643,6 +49684,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 // Importiamo con il nome App ciò che trovi in views app, file principale di Vue
+
 
 
 // Inizializziamo istanza vue

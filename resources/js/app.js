@@ -9,6 +9,7 @@ window.Vue = require('vue');
 
 
 // Importiamo con il nome App ciò che trovi in views app, file principale di Vue
+
 import App from './views/App.vue';
 
 
@@ -17,6 +18,5 @@ import App from './views/App.vue';
 
 const app = new Vue({
     el: '#root',
-    render: (h)=> h(App),
-
+    render: h => h(App),
 });
