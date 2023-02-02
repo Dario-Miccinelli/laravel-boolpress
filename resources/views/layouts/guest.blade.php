@@ -10,7 +10,7 @@
 
 </head>
 <body class="bg-black">
-    <nav><a class=" fs-6 text-secondary text-decoration-none" href="/admin">Go to admin page</a></nav>
+   
     @yield('content')
     {{-- Inseriamo gli script js della cartella public per vue --}}
     <script src="{{asset('js/app.js')}}"></script>

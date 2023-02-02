@@ -1,27 +1,31 @@
 <template>
-    <div>
+    <div class="text-center">
+        <h2 class="text-white mt-5">I nostri contatti</h2>
+        <div>
+        <a href="#">Linkedin</a>
+        <a href="#">GitHub</a>
+    </div>
+
+    <div class="text-white mt-5">
+        <code >
+        Cellulare: 3933608131
+    </code>
+    </div>
 
         
-     
-        <NavBar />
-        <router-view></router-view>
+       
     </div>
 </template>
 
-
 <script>
-
-import NavBar from '../components/NavBar.vue'
 
 export default {
 
-    name: "App",
+    name: "OurContacts",
 
 
     // futuri components
     components: {
-
-        NavBar,
 
     },
 
@@ -34,9 +38,7 @@ export default {
 
     // data, che va sempre con il return 
     data() {
-        return {
-           
-        }
+       
     },
 
     // methods per la funzione
