@@ -1,11 +1,13 @@
 <template>
     <div>
 
-        <h1 class="text-center mt-3 text-white">Posts</h1>
 
+        <!-- loader  -->
+        <Loader v-if="isLoading" />
 
-        <div class="container mt-5">
-            <div class="card mb-3" v-for="elem in posts" :key="id">
+        <!-- card  -->
+        <div  v-else-if="posts.length" class="container mt-5">
+            <div  v-for="elem in posts" :key="elem.id" class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
                      <img :src="'storage/' + elem.cover" class="img-fluid">
@@ -14,12 +16,16 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ elem.title }}</h5>
                             <p class="card-text">{{ elem.body }}</p>
+                            <span v-if="elem.category">
+                             {{ elem.category.name }}
+                        </span>
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <p v-else class="text-white text-center">Non ci sono post nel DB</p>
 
         
     </div>
@@ -28,6 +34,8 @@
 
 <script>
 
+import Loader from '../components/Loader.vue'
+
 export default {
 
     name: "PostLists",
@@ -35,29 +43,35 @@ export default {
 
     // futuri components
     components: {
+        Loader,
 
     },
+    data() {
+    return {
+        posts: [],
+        isLoading: false, 
+    }
+},
 
-    //mounted, gli dico di chiamare la funzione quando la pagina è caricata 
+
     mounted() {
 
         this.getPosts();
 
     },
 
-    // data, che va sempre con il return 
-    data() {
-        return {
-            posts: [], //array vuoto che andrò a riempire con i file del json
-        }
-    },
-
-    // methods per la funzione
+  
     methods: {
         getPosts() {
+            this.isLoading = true,
             axios.get('http://localhost:8000/api/posts') //chiamata API ai dati dei post 
                 .then((res) => {
-                    this.posts = res.data; //riempio l'array vuoto che ho sopra in data
+                    this.posts = res.data;
+                    
+                }).catch(err => {
+                    console.log(err)
+                }).then(() => {
+                    this.isLoading = false
                 })
         }
     }
