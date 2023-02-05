@@ -1,23 +1,20 @@
 <template>
     <div>
 
-
+        <h1 class="text-center text-white">Post feelings</h1>
         <!-- loader  -->
         <Loader v-if="isLoading" />
 
+     
         <!-- card  -->
-        <div  v-else-if="posts.length" class="container mt-5">
-            <div  v-for="elem in posts" :key="elem.id" class="card mb-3">
+        <div  v-else-if="tags.length" class="container mt-5">
+            <div  v-for="elem in tags" :key="elem.id" class="card mb-3">
                 <div class="row g-0">
-                    <div class="col-md-4">
-                     <img :src="'storage/' + elem.cover" class="img-fluid">
-                    </div>
+                
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">{{ elem.title }}</h5>
-                            <p class="card-text">{{ elem.body }}</p>
-                           
-
+                            <p class="card-text">Today i'm feeling: {{ elem.name }}</p>
+                          
                         </div>
                     </div>
                 </div>
@@ -32,11 +29,11 @@
 
 <script>
 
-import Loader from '../components/Loader.vue'
+import Loader from '../../components/Loader.vue'
 
 export default {
 
-    name: "PostLists",
+    name: "TagList",
 
 
     // futuri components
@@ -46,7 +43,7 @@ export default {
     },
     data() {
     return {
-        posts: [],
+        tags: [],
         isLoading: false, 
     }
 },
@@ -54,26 +51,24 @@ export default {
 
     mounted() {
 
-        this.getPosts();
-       
+        this.getTags();
 
     },
 
   
     methods: {
-        getPosts() {
+        getTags() {
             this.isLoading = true,
-            axios.get('http://localhost:8000/api/posts') //chiamata API ai dati dei post 
+            axios.get('http://localhost:8000/api/tags') //chiamata API ai dati dei post 
                 .then((res) => {
-                    this.posts = res.data;
+                    this.tags = res.data;
                     
                 }).catch(err => {
                     console.log(err)
                 }).then(() => {
                     this.isLoading = false
                 })
-        },
-     
+        }
     }
 }
 

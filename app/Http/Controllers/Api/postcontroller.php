@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+
 use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,6 +18,7 @@ class postcontroller extends Controller
     {
         $post = Post::All();
         return response()->json($post);
+
     }
 
     /**

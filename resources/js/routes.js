@@ -6,7 +6,7 @@ Vue.use (VueRouter)
 
 import OurContacts from './components/OurContacts.vue'
 import PostLists from './components/PostLists.vue'
-import TagsIndex from './components/TagsIndex.vue'
+import TagsIndex from './components/Tags/TagsIndex.vue'
 
 const router = new VueRouter ({
     mode: 'history',
