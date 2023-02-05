@@ -22,8 +22,6 @@
 export default {
 
     name: "OurContacts",
-
-
     
 }
 
